@@ -1,0 +1,11 @@
+C:\Users\Admin\Downloads\Demo01\Demo01\bin\Debug\Demo01.exe.config
+C:\Users\Admin\Downloads\Demo01\Demo01\bin\Debug\Demo01.exe
+C:\Users\Admin\Downloads\Demo01\Demo01\bin\Debug\Demo01.pdb
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.csproj.AssemblyReference.cache
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.Form1.resources
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.Form2.resources
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.Properties.Resources.resources
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.exe
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.pdb
