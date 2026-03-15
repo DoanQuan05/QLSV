@@ -57,9 +57,6 @@
     <Compile Include="DTO\AccountDto.cs" />
     <Compile Include="DTO\ClassDto.cs" />
     <Compile Include="DTO\StudentDto.cs" />
-    <Compile Include="Forms\FrmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +118,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="database\QLSV.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

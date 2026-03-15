@@ -9,3 +9,4 @@ C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.csproj.GenerateResource.
 C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.exe
 C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.pdb
+C:\Users\Admin\Downloads\Demo01\Demo01\obj\Debug\Demo01.exe.config

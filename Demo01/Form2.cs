@@ -125,7 +125,7 @@ namespace Demo01
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             ClearForm();
-        }
+        } 
 
         private void btnTim_Click(object sender, EventArgs e)
         {

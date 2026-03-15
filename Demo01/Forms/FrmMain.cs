@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Demo01.BLL;
 
@@ -56,8 +57,8 @@ namespace Demo01.Forms
             };
 
             // Left: input + actions
-            var panelLeft = new Panel { Dock = DockStyle.Fill, Padding = new Padding(12) };
-            var title = new Label { Text = "Thông tin sinh viên", Font = new Font(Font, FontStyle.Bold), AutoSize = true };
+            var panelLeft = new Panel { Dock = DockStyle.Fill, Padding = new Padding(12), BackColor = System.Drawing.Color.FromArgb(245, 247, 250) };
+            var title = new Label { Text = "Thông tin sinh viên", Font = new Font(Font, FontStyle.Bold), AutoSize = true, ForeColor = System.Drawing.Color.FromArgb(0, 90, 170) };
             panelLeft.Controls.Add(title);
 
             int top = 35;
@@ -148,8 +149,8 @@ namespace Demo01.Forms
                 FixedPanel = FixedPanel.Panel1
             };
 
-            var left = new Panel { Dock = DockStyle.Fill, Padding = new Padding(12) };
-            left.Controls.Add(new Label { Text = "Quản lý lớp", Font = new Font(Font, FontStyle.Bold), AutoSize = true });
+            var left = new Panel { Dock = DockStyle.Fill, Padding = new Padding(12), BackColor = System.Drawing.Color.FromArgb(245, 247, 250) };
+            left.Controls.Add(new Label { Text = "Quản lý lớp", Font = new Font(Font, FontStyle.Bold), AutoSize = true, ForeColor = System.Drawing.Color.FromArgb(0, 90, 170) });
 
             int top = 35;
             left.Controls.Add(MkLabel("Mã lớp", 0, top));
@@ -173,6 +174,30 @@ namespace Demo01.Forms
 
             split.Panel1.Controls.Add(left);
 
+            var txtSearchLop = new TextBox { Left = 80, Top = 5, Width = 500 };
+            var panelSearchLop = new Panel { Dock = DockStyle.Top, Height = 32 };
+            panelSearchLop.Controls.Add(new Label { Left = 0, Top = 8, Width = 80, Text = "Tìm kiếm" });
+            panelSearchLop.Controls.Add(txtSearchLop);
+            var btnSearchLop = new Button { Left = 590, Top = 3, Width = 90, Height = 26, Text = "Tìm" };
+            var btnReloadLop = new Button { Left = 685, Top = 3, Width = 90, Height = 26, Text = "Tải lại" };
+            btnSearchLop.Click += (s, e) =>
+            {
+                var dt = _lopService.GetAllTable();
+                var keyword = txtSearchLop.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    var filtered = dt.AsEnumerable().Where(r =>
+                        r["MaLop"]?.ToString().ToLower().Contains(keyword) == true ||
+                        r["TenLop"]?.ToString().ToLower().Contains(keyword) == true);
+                    _gvLop.DataSource = filtered.Any() ? filtered.CopyToDataTable() : dt.Clone();
+                }
+                else _gvLop.DataSource = dt;
+            };
+            btnReloadLop.Click += (s, e) => { txtSearchLop.Text = ""; LoadClasses(); };
+            panelSearchLop.Controls.Add(btnSearchLop);
+            panelSearchLop.Controls.Add(btnReloadLop);
+
+            var panelRight2 = new Panel { Dock = DockStyle.Fill, Padding = new Padding(12) };
             _gvLop = new DataGridView
             {
                 Dock = DockStyle.Fill,
@@ -182,7 +207,9 @@ namespace Demo01.Forms
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
             _gvLop.CellClick += (s, e) => FillClassFormFromGrid();
-            split.Panel2.Controls.Add(_gvLop);
+            panelRight2.Controls.Add(_gvLop);
+            panelRight2.Controls.Add(panelSearchLop);
+            split.Panel2.Controls.Add(panelRight2);
 
             page.Controls.Add(split);
             return page;
@@ -385,7 +412,21 @@ namespace Demo01.Forms
 
         private static Button MkButton(string text, int left, int top)
         {
-            return new Button { Left = left, Top = top, Width = 100, Height = 30, Text = text };
+            System.Drawing.Color color;
+            switch (text)
+            {
+                case "Thêm": color = System.Drawing.Color.FromArgb(0, 120, 215); break;
+                case "Sửa":  color = System.Drawing.Color.FromArgb(255, 153, 0); break;
+                case "Xóa":  color = System.Drawing.Color.FromArgb(210, 50, 50); break;
+                default:     color = System.Drawing.Color.FromArgb(100, 100, 100); break;
+            }
+            return new Button
+            {
+                Left = left, Top = top, Width = 100, Height = 30, Text = text,
+                BackColor = color, ForeColor = System.Drawing.Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold)
+            };
         }
     }
 }
